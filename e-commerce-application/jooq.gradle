@@ -1,0 +1,49 @@
+jooq {
+    configurations {
+        sakilaDB {
+            generationTool {
+                generator {
+                    database {
+                        name = 'org.jooq.meta.extensions.jpa.JPADatabase'
+                        properties {
+                            property {
+                                key = 'packages'
+                                value = 'io.github.laziness_dev.domain'
+                            }
+
+                            // DSL 생성시, jpa의 AttributeConverters 에 따라 jooq DSL의 타입을 매핑할지 여부
+                            property {
+                                key = 'useAttributeConverters'
+                                value = true
+                            }
+
+                            property {
+                                key = 'hibernate.physical_naming_strategy'
+                                value = 'io.github.laziness_dev.common.naming.QuotedPhysicalNamingStrategy'
+                            }
+                        }
+                    }
+
+                    generate {
+                        daos = false
+                        springAnnotations = true
+                        springDao = true
+                        deprecated = false
+                        records = true
+                        immutablePojos = true
+                        fluentSetters = true
+                        javaTimeTypes = true
+                    }
+
+                    target {
+                        packageName = 'jooq.jooq_dsl'
+                        directory = 'src/generated'
+                        encoding = 'UTF-8'
+                    }
+
+                    strategy.name = 'io.github.laziness_dev.generator.JPrefixGeneratorStrategy'
+                }
+            }
+        }
+    }
+}
