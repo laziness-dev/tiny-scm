@@ -5,13 +5,19 @@ jooq {
                 generator {
                     database {
                         name = 'org.jooq.meta.extensions.jpa.JPADatabase'
+                        forcedTypes {
+                            forcedType {
+                                name = 'OFFSETDATETIME'
+                                includeExpression = '\\b(CREATED_AT|MODIFIED_AT)\\b'
+                            }
+                        }
+
                         properties {
                             property {
                                 key = 'packages'
                                 value = 'io.github.laziness_dev.domain'
                             }
 
-                            // DSL 생성시, jpa의 AttributeConverters 에 따라 jooq DSL의 타입을 매핑할지 여부
                             property {
                                 key = 'useAttributeConverters'
                                 value = true
@@ -25,7 +31,7 @@ jooq {
                     }
 
                     generate {
-                        daos = false
+                        daos = true
                         springAnnotations = true
                         springDao = true
                         deprecated = false
@@ -41,7 +47,7 @@ jooq {
                         encoding = 'UTF-8'
                     }
 
-                    strategy.name = 'io.github.laziness_dev.generator.JPrefixGeneratorStrategy'
+                    strategy.name = 'io.github.laziness_dev.generator.JPrefixAndAuditGenerateStrategy'
                 }
             }
         }

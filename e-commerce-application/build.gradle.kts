@@ -7,7 +7,7 @@ repositories {
 buildscript {
     configurations["classpath"].resolutionStrategy.eachDependency {
         if (requested.group == "org.jooq") {
-            useVersion("3.18.6")
+            useVersion("3.18.2")
         }
     }
 }
@@ -21,12 +21,13 @@ sourceSets {
 }
 
 dependencies {
-    api(project(":e-commerce-domain"))
+    compileOnly(project(":e-commerce-domain"))
+    compileOnly(project(":jooq-codegen"))
 
     implementation("org.springframework.boot:spring-boot-starter-jooq")
 
     jooqGenerator(project(":jooq-codegen"))
-    jooqGenerator("org.jooq:jooq-meta-extensions-hibernate:3.18.4")
+    jooqGenerator("org.jooq:jooq-meta-extensions-hibernate:3.18.2")
     jooqGenerator("com.h2database:h2:2.1.214")
 
     runtimeOnly("com.h2database:h2:2.1.214")
