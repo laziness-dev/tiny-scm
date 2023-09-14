@@ -11,7 +11,7 @@ tasks.getByName<Jar>("jar") {
 }
 
 dependencies {
-    implementation("org.springframework.data:spring-data-jpa")
+    api("org.springframework.data:spring-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
     implementation("org.hibernate.orm:hibernate-core:6.2.6.Final")

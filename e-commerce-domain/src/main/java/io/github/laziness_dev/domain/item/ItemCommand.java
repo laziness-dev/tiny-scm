@@ -1,12 +1,9 @@
-package io.github.laziness_dev.domain.item.command;
-
-import io.github.laziness_dev.domain.item.Item;
+package io.github.laziness_dev.domain.item;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class ItemCommand {
-    public record RegisterItemRequest(
+    public record RegisterRequest(
             String name,
             Long price
     ) {
