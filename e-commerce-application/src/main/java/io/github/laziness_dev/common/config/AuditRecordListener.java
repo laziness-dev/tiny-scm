@@ -6,7 +6,6 @@ import org.jooq.RecordListener;
 
 import java.time.OffsetDateTime;
 
-
 public class AuditRecordListener implements RecordListener {
 
     @Override
@@ -20,8 +19,7 @@ public class AuditRecordListener implements RecordListener {
 
     @Override
     public void updateStart(RecordContext ctx) {
-        if (ctx.record() instanceof Auditable) {
-            Auditable record = (Auditable) ctx.record();
+        if (ctx.record() instanceof Auditable record) {
             record.updateModifiedAt(OffsetDateTime.now());
         }
     }

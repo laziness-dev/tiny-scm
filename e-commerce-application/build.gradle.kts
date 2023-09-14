@@ -25,6 +25,7 @@ dependencies {
     compileOnly(project(":jooq-codegen"))
 
     implementation("org.springframework.boot:spring-boot-starter-jooq")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     jooqGenerator(project(":jooq-codegen"))
     jooqGenerator("org.jooq:jooq-meta-extensions-hibernate:3.18.2")

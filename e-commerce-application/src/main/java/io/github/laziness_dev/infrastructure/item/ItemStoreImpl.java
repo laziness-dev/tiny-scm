@@ -2,26 +2,30 @@ package io.github.laziness_dev.infrastructure.item;
 
 import io.github.laziness_dev.domain.item.Item;
 import io.github.laziness_dev.domain.item.ItemStore;
-import jooq.jooq_dsl.tables.JItems;
-import org.jooq.DSLContext;
+import jooq.jooq_dsl.tables.daos.ItemsDao;
 import org.springframework.stereotype.Component;
+import jooq.jooq_dsl.tables.pojos.JItems;
 
 @Component
 public class ItemStoreImpl implements ItemStore {
-    private final DSLContext jooq;
+    private final ItemsDao itemsDao;
 
-    public ItemStoreImpl(DSLContext jooq) {
-        this.jooq = jooq;
+    public ItemStoreImpl(ItemsDao itemsDao) {
+        this.itemsDao = itemsDao;
     }
 
     @Override
     public Item store(Item initItem) {
-        jooq.insertInto(JItems.ITEMS)
-                .set(JItems.ITEMS.ITEM_IDENTIFIER, initItem.identifier())
-                .set(JItems.ITEMS.NAME, initItem.name())
-                .set(JItems.ITEMS.PRICE, initItem.price())
-                .set(JItems.ITEMS.STATUS, initItem.status())
-                .execute();
+       JItems jItems = new JItems(null,
+               null,
+               null,
+               initItem.identifier(),
+               initItem.name(),
+               initItem.price(),
+               initItem.status()
+       );
+
+        itemsDao.insert(jItems);
         return initItem;
     }
 }
