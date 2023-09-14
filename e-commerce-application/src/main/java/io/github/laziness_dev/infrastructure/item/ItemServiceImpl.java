@@ -1,9 +1,6 @@
 package io.github.laziness_dev.infrastructure.item;
 
-import io.github.laziness_dev.domain.item.Item;
-import io.github.laziness_dev.domain.item.ItemService;
-import io.github.laziness_dev.domain.item.ItemStore;
-import io.github.laziness_dev.domain.item.command.ItemCommand;
+import io.github.laziness_dev.domain.item.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,15 +11,9 @@ public class ItemServiceImpl implements ItemService {
         this.itemStore = itemStore;
     }
 
-    public String register(ItemCommand.RegisterItemRequest request) {
+    public ItemView.Default register(ItemCommand.RegisterRequest request) {
         Item initItem = request.toEntity();
-        return itemStore.store(initItem)
-                .id();
-    }
-
-    @Override
-    public String register(String request) {
-        return null;
+        return new ItemView.Default(itemStore.store(initItem));
     }
 
     @Override

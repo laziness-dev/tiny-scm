@@ -17,9 +17,10 @@ public class ItemStoreImpl implements ItemStore {
     @Override
     public Item store(Item initItem) {
         jooq.insertInto(JItems.ITEMS)
-                .set(JItems.ITEMS.ITEMIDENTIFIER, initItem.id())
+                .set(JItems.ITEMS.ITEM_IDENTIFIER, initItem.identifier())
                 .set(JItems.ITEMS.NAME, initItem.name())
                 .set(JItems.ITEMS.PRICE, initItem.price())
+                .set(JItems.ITEMS.STATUS, initItem.status())
                 .execute();
         return initItem;
     }

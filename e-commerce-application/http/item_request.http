@@ -1,0 +1,8 @@
+### 아이템 생성
+POST http://localhost:8080/api/v1/items
+Content-Type: application/json
+
+{
+  "name" : "바지",
+  "price": 10000
+}

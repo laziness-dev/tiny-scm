@@ -12,6 +12,6 @@ tasks.named<Jar>("jar") {
 
 dependencies {
     api(project(":e-commerce-domain"))
-    implementation("org.jooq:jooq-codegen:3.18.6")
+    implementation("org.jooq:jooq-codegen:3.18.2")
     implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
 }
